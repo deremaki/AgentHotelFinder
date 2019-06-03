@@ -55,16 +55,14 @@ public class MainAgent extends Agent {
 
         @Override
         public void onStart() {
-            System.out.println("MainAgent: Looking for hotels in " + requestMessage.getContent());
+            System.out.println("MainAgent: Looking for hotels: " + requestMessage.getContent());
 
             hotelRobots = getHotelRobots();
 
             currentBestPrice = 100000;
-            currentBestSeller = new AID();
 
             for (AID robot: hotelRobots) {
 
-                //send cfp
                 addSubBehaviour(new OneShotBehaviour() {
                     @Override
                     public void action() {
@@ -76,7 +74,6 @@ public class MainAgent extends Agent {
                     }
                 });
 
-                //wait for refuse or propose
                 addSubBehaviour(new myReceiver(myAgent, 100000, MessageTemplate.MatchPerformative( ACLMessage.INFORM )) {
                     public void handle( ACLMessage msg)
                     {

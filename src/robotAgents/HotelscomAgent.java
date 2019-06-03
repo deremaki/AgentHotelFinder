@@ -19,9 +19,10 @@ import utils.*;
 public class HotelscomAgent extends Agent {
 
     private String destination;
-    private Date dateFrom;
-    private Date dateTo;
+    private String dateFrom;
+    private String dateTo;
     private int minimumRating;
+    private int adults;
 
     private int totalWait = 120;
     private int wait = 0;
@@ -33,29 +34,35 @@ public class HotelscomAgent extends Agent {
 
         registerToDF();
 
-        Object[] args = getArguments();
-        if (args != null) {
-            destination = (String) args[0];
-            dateFrom = (Date) args[1];
-            dateTo = (Date) args[2];
-            minimumRating = (int) args[3];
-        }
-
         addBehaviour(new myReceiver(this, 60000,  MessageTemplate.MatchPerformative(ACLMessage.REQUEST)) {
             public void handle( ACLMessage msg)
             {
                 if (msg != null ) {
+
+                    //decode message
+                    String content = msg.getContent();
+                    String[] args = content.split(";");
+                    destination = args[0];
+                    dateFrom = args[1];
+                    dateTo = args[2];
+                    minimumRating = Integer.parseInt(args[3]);
+                    adults = Integer.parseInt(args[4]);
+
+                    String workDirectory = "C:\\Robot\\";
+
+                    String parameters = "\"{'destination': '"+destination+"', 'dateFrom': '"+dateFrom+"', 'dateTo': '"+dateTo+"', 'minimumRating': "+minimumRating+", 'adults': "+adults+" }\"";
+
                     myAgent.addBehaviour(new OneShotBehaviour() {
                         @Override
                         public void action() {
                             try {
-                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\OneDrive\\Dokumenty\\UiPath\\bookingcomAgent\\Main.xaml\"&& exit\"");
+                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\IdeaProjects\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
                                 System.out.println("test");
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
 
-                            File output = new File("C:\\Users\\derem\\Desktop\\warszawa.csv");
+                            File output = new File(workDirectory + destination +".csv");
                             wait = 0;
                             while(!output.exists() && wait<totalWait) {
                                 try {
@@ -65,7 +72,13 @@ public class HotelscomAgent extends Agent {
                                     e.printStackTrace();
                                 }
                             }
-                            System.out.println("robotAgents.HotelscomAgent: Found nice hotel for 500!");
+
+                            //read output
+                            //delete output
+
+                            System.out.println("HotelscomAgent: Found nice hotel for 500!");
+
+                            //notify MainAgent
                             ACLMessage message = new ACLMessage(ACLMessage.INFORM);
                             message.setContent("500");
                             message.addReceiver(new AID( "mainAgent", AID.ISLOCALNAME));
