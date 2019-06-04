@@ -58,7 +58,7 @@ public class HotelscomAgent extends Agent {
                         @Override
                         public void action() {
                             try {
-                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\IdeaProjects\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
+                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\source\\repos\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
                                 //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\Piotrek\\AppData\\Local\\UiPath\\app-19.5.0\\UiRobot.exe\" -file \"C:\\Users\\Piotrek\\Desktop\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
 
                                 System.out.println("test");

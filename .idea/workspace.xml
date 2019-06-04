@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f5f610-dab7-4ea6-a5be-2e6455a58c53" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/mainAgent/MainAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainAgent/MainAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiPath/Kayak/.local/nuget.cache.backup" beforeDir="false" afterPath="$PROJECT_DIR$/UiPath/Kayak/.local/nuget.cache.backup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UiPath/Kayak/Main.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/UiPath/Kayak/Main.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/robotAgents/HotelscomAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/robotAgents/HotelscomAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/robotAgents/KayakcomAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/robotAgents/KayakcomAgent.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robotAgents/HotelscomAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="65" column="54" lean-forward="true" selection-start-line="65" selection-start-column="54" selection-end-line="65" selection-end-column="54" />
+            <state relative-caret-position="186">
+              <caret line="60" column="237" selection-start-line="60" selection-start-column="237" selection-end-line="60" selection-end-column="237" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1743#4199#0" expanded="true" />
@@ -40,13 +42,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robotAgents/KayakcomAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="63" column="52" lean-forward="true" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
+            <state relative-caret-position="324">
+              <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
               <folding>
-                <element signature="e#1724#4254#0" expanded="true" />
                 <element signature="e#4253#4254#0" expanded="true" />
               </folding>
             </state>
@@ -65,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainAgent/MainAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="38" column="41" lean-forward="true" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+            <state relative-caret-position="68">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,9 +101,9 @@
         <option value="$PROJECT_DIR$/src/HotelscomAgent.java" />
         <option value="$PROJECT_DIR$/src/userAgent/UserAgent.java" />
         <option value="$PROJECT_DIR$/src/utils/AgentHelper.java" />
+        <option value="$PROJECT_DIR$/src/mainAgent/MainAgent.java" />
         <option value="$PROJECT_DIR$/src/robotAgents/HotelscomAgent.java" />
         <option value="$PROJECT_DIR$/src/robotAgents/KayakcomAgent.java" />
-        <option value="$PROJECT_DIR$/src/mainAgent/MainAgent.java" />
       </list>
     </option>
   </component>
@@ -194,7 +195,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="jade.Boot" />
       <module name="AgentHotelFinder" />
-      <option name="PROGRAM_PARAMETERS" value="-gui -agents &quot;hotelscomAgent:robotAgents.HotelscomAgent;mainAgent:mainAgent.MainAgent;userAgent:userAgent.UserAgent&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="-gui -agents &quot;kayakcomAgent:robotAgents.KayakcomAgent;hotelscomAgent:robotAgents.HotelscomAgent;mainAgent:mainAgent.MainAgent;userAgent:userAgent.UserAgent&quot;" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
@@ -218,18 +219,18 @@
       <option name="presentableId" value="Default" />
       <updated>1559485361814</updated>
       <workItem from="1559485364962" duration="13424000" />
-      <workItem from="1559684111629" duration="732000" />
+      <workItem from="1559684111629" duration="1738000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14156000" />
+    <option name="totallyTimeSpent" value="15162000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -238,7 +239,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23185265" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23185265" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -287,18 +288,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotAgents/HotelscomAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="65" column="54" lean-forward="true" selection-start-line="65" selection-start-column="54" selection-end-line="65" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1743#4199#0" expanded="true" />
-            <element signature="e#4198#4199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/userAgent/UserAgent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-261">
@@ -309,23 +298,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotAgents/KayakcomAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/mainAgent/MainAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="63" column="52" lean-forward="true" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
+        <state relative-caret-position="68">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
-            <element signature="e#1724#4254#0" expanded="true" />
-            <element signature="e#4253#4254#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainAgent/MainAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/robotAgents/HotelscomAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="38" column="41" lean-forward="true" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+        <state relative-caret-position="186">
+          <caret line="60" column="237" selection-start-line="60" selection-start-column="237" selection-end-line="60" selection-end-column="237" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1743#4199#0" expanded="true" />
+            <element signature="e#4198#4199#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robotAgents/KayakcomAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+          <folding>
+            <element signature="e#4253#4254#0" expanded="true" />
           </folding>
         </state>
       </provider>
