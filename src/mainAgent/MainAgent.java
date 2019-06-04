@@ -92,7 +92,7 @@ public class MainAgent extends Agent {
                     }
                 });
 
-                addSubBehaviour(new myReceiver(myAgent, 100000, MessageTemplate.MatchPerformative( ACLMessage.INFORM )) {
+                addSubBehaviour(new myReceiver(myAgent, 150000, MessageTemplate.MatchPerformative( ACLMessage.INFORM )) {
                     public void handle( ACLMessage msg) {
                         if (msg != null ) {
                             System.out.println("MainAgent: " + robot + " found " + msg.getContent());

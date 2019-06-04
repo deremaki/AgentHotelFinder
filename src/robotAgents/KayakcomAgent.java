@@ -9,16 +9,14 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import utils.CSVHelper;
+import utils.HotelsResult;
+import utils.myReceiver;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.Base64;
-import java.util.Date;
 
-import utils.*;
-
-public class HotelscomAgent extends Agent {
+public class KayakcomAgent extends Agent {
 
     private String destination;
     private String dateFrom;
@@ -45,8 +43,8 @@ public class HotelscomAgent extends Agent {
                     String content = msg.getContent();
                     String[] args = content.split(";");
                     destination = args[0];
-                    dateFrom = args[1];
-                    dateTo = args[2];
+                    dateFrom = args[1].replace("/", ".");
+                    dateTo = args[2].replace("/", ".");
                     minimumRating = Integer.parseInt(args[3]);
                     adults = Integer.parseInt(args[4]);
 
@@ -58,8 +56,8 @@ public class HotelscomAgent extends Agent {
                         @Override
                         public void action() {
                             try {
-                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\IdeaProjects\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
-                                //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\Piotrek\\AppData\\Local\\UiPath\\app-19.5.0\\UiRobot.exe\" -file \"C:\\Users\\Piotrek\\Desktop\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
+                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\IdeaProjects\\AgentHotelFinder\\UiPath\\Kayak\\Main.xaml\" -input " + parameters + "&& exit\"");
+                                //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\Piotrek\\AppData\\Local\\UiPath\\app-19.5.0\\UiRobot.exe\" -file \"C:\\Users\\Piotrek\\Desktop\\AgentHotelFinder\\UiPath\\Kayak\\Main.xaml\" -input " + parameters + "&& exit\"");
 
                                 System.out.println("test");
                             } catch (IOException e) {
