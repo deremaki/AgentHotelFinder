@@ -1,9 +1,7 @@
 package mainAgent;
 
-import jade.content.lang.sl.SLCodec;
 import jade.core.AID;
 import jade.core.Agent;
-import jade.core.Location;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.core.behaviours.SequentialBehaviour;
 import jade.core.behaviours.TickerBehaviour;
@@ -11,23 +9,24 @@ import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
-import jade.domain.mobility.MobilityOntology;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 
-import jade.lang.acl.UnreadableException;
 import utils.*;
 
 public class MainAgent extends Agent {
 
     private LinkedList<AID> hotelRobots;
+    private LinkedList<AID> bestOfferAgents;
     private List<List<String>> bookingResultsFromAllAgents;
     private Map<String, Boolean> responseFromRobot;
     private String destination = "C:\\Robot\\FinalResult.csv";
-
+    private String city;
     @Override
     protected void setup() {
         super.setup();
@@ -47,6 +46,7 @@ public class MainAgent extends Agent {
             public void handle( ACLMessage msg)
             {
                 if (msg != null ) {
+                    city = msg.getContent().split(";")[0];
                     myAgent.addBehaviour(new SearchForHotelsBehaviour(msg));
                 }
             }
@@ -57,6 +57,21 @@ public class MainAgent extends Agent {
             public void onTick() {
                 if (responseFromRobot.values().stream().anyMatch((v) -> v)) {
                     CSVHelper.WriteCsc(bookingResultsFromAllAgents, destination);
+                    // save to best offer
+                    ACLMessage message = new ACLMessage(ACLMessage.REQUEST);
+                    message.setConversationId(city);
+                    message.setOntology("save");
+                    message.addReceiver(bestOfferAgents.getFirst());
+                    HotelsResult hotelsResult = new HotelsResult();
+                    hotelsResult.result = bookingResultsFromAllAgents;
+                    try {
+                        message.setContentObject(hotelsResult);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    send(message);
+                    // end program
+                    myAgent.doDelete();
                 }
             }
         });
@@ -79,7 +94,8 @@ public class MainAgent extends Agent {
         public void onStart() {
             System.out.println("MainAgent: Looking for hotels: " + requestMessage.getContent());
 
-            hotelRobots = getHotelRobots();
+            hotelRobots = getAgents("HotelRobot");
+            bestOfferAgents = getAgents("BestOffer");
 
             currentBestPrice = 100000;
 
@@ -124,6 +140,46 @@ public class MainAgent extends Agent {
                 });
             }
 
+            for (AID agent: bestOfferAgents) {
+
+                responseFromRobot.put(agent.getName(), false);
+
+                addSubBehaviour(new OneShotBehaviour() {
+                    @Override
+                    public void action() {
+                        System.out.println("MainAgent: send request to " + agent);
+                        ACLMessage message = new ACLMessage(ACLMessage.REQUEST);
+                        var city = requestMessage.getContent().split(";")[0];
+                        message.setContent(city);
+                        message.setOntology("get");
+                        message.addReceiver(agent);
+                        send(message);
+                    }
+                });
+
+                addSubBehaviour(new myReceiver(myAgent, 100000, MessageTemplate.MatchPerformative( ACLMessage.INFORM )) {
+                    public void handle( ACLMessage msg) {
+                        if (msg != null ) {
+                            System.out.println("MainAgent: " + agent + " found " + msg.getContent());
+                            HotelsResult result = null;
+                            try {
+                                result = (HotelsResult) msg.getContentObject();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            responseFromRobot.put(msg.getSender().getName(), true);
+                            if (result != null) {
+                                if (bookingResultsFromAllAgents.size() > 0 && result.result.size() > 0) {
+                                    result.result.remove(0);
+                                }
+                                result.result.add(Arrays.asList("From best offer"));
+                                bookingResultsFromAllAgents.addAll(result.result);
+                            }
+                        }
+                    }
+                });
+            }
+
             //report best
             addSubBehaviour(new OneShotBehaviour() {
                 @Override
@@ -138,12 +194,12 @@ public class MainAgent extends Agent {
         }
     }
 
-    private LinkedList<AID> getHotelRobots() {
+    private LinkedList<AID> getAgents(String name) {
         LinkedList<AID> sellers = null;
 
         DFAgentDescription dfd = new DFAgentDescription();
         ServiceDescription sd  = new ServiceDescription();
-        sd.setType("HotelRobot");
+        sd.setType(name);
         dfd.addServices(sd);
 
         try {
