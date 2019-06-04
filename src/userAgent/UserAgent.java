@@ -22,9 +22,12 @@ import utils.*;
 public class UserAgent extends Agent {
 
     private String destination = "Warszawa";
-    private Date dateFrom = new Date(20,6,2019);
-    private Date dateTo = new Date(27,6,2019);
-    private double minimumRating = 4.0;
+    //private Date dateFrom = new Date(20,6,2019);
+    //private Date dateTo = new Date(27,6,2019);
+    private String dateFrom = "20/06/2019";
+    private String dateTo = "27/06/2019";
+    private int minimumRating = 4;
+    private int adults = 2;
 
     @Override
     protected void setup() {
@@ -52,42 +55,51 @@ public class UserAgent extends Agent {
             SequentialBehaviour seq = new SequentialBehaviour();
             addBehaviour(seq);
 
-            //request start
             seq.addSubBehaviour(new OneShotBehaviour() {
                 @Override
                 public void action() {
-                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-                    System.out.print("Enter where you want to stay:");
-                    try {
-                        destination = br.readLine();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.print("Enter start date of your stay (dd/MM/yyyy):");
-                    try {
-                        dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse(br.readLine());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    System.out.print("Enter end date of your stay (dd/MM/yyyy):");
-                    try {
-                        dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse(br.readLine());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    System.out.print("Enter minimum rating you are expecting:");
-                    try {
-                        minimumRating = Double.parseDouble(br.readLine());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+//                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//                    System.out.print("Enter where you want to stay:");
+//                    try {
+//                        destination = br.readLine();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.print("Enter start date of your stay (dd/MM/yyyy):");
+//                    try {
+//                        //dateFrom = new SimpleDateFormat("dd/MM/yyyy").parse(br.readLine());
+//                          dateFrom = br.readLine();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    System.out.print("Enter end date of your stay (dd/MM/yyyy):");
+//                    try {
+//                        //dateTo = new SimpleDateFormat("dd/MM/yyyy").parse(br.readLine());
+//                          dateTo = br.readLine();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                    System.out.print("How may adults are going to stay:");
+//                    try {
+//                        adults = Integer.parseInt(br.readLine());
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    System.out.print("Enter minimum rating you are expecting:");
+//                    try {
+//                        minimumRating = Double.parseDouble(br.readLine());
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
 
                     System.out.println("UserAgent: Requesting MainAgent search - destination: " + destination + ", from " + dateFrom.toString() + " to " + dateTo.toString() + " with minimum rating of " + minimumRating);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
                     ACLMessage message = new ACLMessage(ACLMessage.REQUEST);
-                    message.setContent(destination);
+                    //message.setContent(destination+";"+dateFormat.format(dateFrom)+";"+dateFormat.format(dateTo)+";"+minimumRating+";"+adults);
+                    message.setContent(destination+";"+dateFrom+";"+dateTo+";"+minimumRating+";"+adults);
                     message.addReceiver(new AID( "mainAgent", AID.ISLOCALNAME));
                     send(message);
                 }
