@@ -3,6 +3,7 @@ package robotAgents;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;
+import jade.core.behaviours.TickerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
@@ -34,70 +35,76 @@ public class KayakcomAgent extends Agent {
 
         registerToDF();
 
-        addBehaviour(new myReceiver(this, 60000,  MessageTemplate.MatchPerformative(ACLMessage.REQUEST)) {
-            public void handle( ACLMessage msg)
-            {
-                if (msg != null ) {
+        addBehaviour(new TickerBehaviour(this, 5000) {
 
-                    //decode message
-                    String content = msg.getContent();
-                    String[] args = content.split(";");
-                    destination = args[0];
-                    dateFrom = args[1].replace("/", ".");
-                    dateTo = args[2].replace("/", ".");
-                    minimumRating = Integer.parseInt(args[3]);
-                    adults = Integer.parseInt(args[4]);
+                         @Override
+                         protected void onTick() {
+                             addBehaviour(new myReceiver(myAgent, 60000,  MessageTemplate.MatchPerformative(ACLMessage.REQUEST)) {
+                                 public void handle( ACLMessage msg)
+                                 {
+                                     if (msg != null ) {
 
-                    String workDirectory = "C:\\Robot\\";
+                                         //decode message
+                                         String content = msg.getContent();
+                                         String[] args = content.split(";");
+                                         destination = args[0];
+                                         dateFrom = args[1].replace("/", ".");
+                                         dateTo = args[2].replace("/", ".");
+                                         minimumRating = Integer.parseInt(args[3]);
+                                         adults = Integer.parseInt(args[4]);
 
-                    String parameters = "\"{'destination': '"+destination+"', 'dateFrom': '"+dateFrom+"', 'dateTo': '"+dateTo+"', 'minimumRating': "+minimumRating+", 'adults': "+adults+" }\"";
+                                         String workDirectory = "C:\\Robot\\";
 
-                    myAgent.addBehaviour(new OneShotBehaviour() {
-                        @Override
-                        public void action() {
-                            try {
-                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\source\\repos\\AgentHotelFinder\\UiPath\\Kayak\\Main.xaml\" -input " + parameters + "&& exit\"");
-                                //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\Piotrek\\AppData\\Local\\UiPath\\app-19.5.0\\UiRobot.exe\" -file \"C:\\Users\\Piotrek\\Desktop\\AgentHotelFinder\\UiPath\\Kayak\\Main.xaml\" -input " + parameters + "&& exit\"");
+                                         String parameters = "\"{'destination': '"+destination+"', 'dateFrom': '"+dateFrom+"', 'dateTo': '"+dateTo+"', 'minimumRating': "+minimumRating+", 'adults': "+adults+" }\"";
 
-                                //System.out.println("test");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                                         myAgent.addBehaviour(new OneShotBehaviour() {
+                                             @Override
+                                             public void action() {
+                                                 try {
+                                                     Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\source\\repos\\AgentHotelFinder\\UiPath\\Kayak\\Main.xaml\" -input " + parameters + "&& exit\"");
+                                                     //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\Piotrek\\AppData\\Local\\UiPath\\app-19.5.0\\UiRobot.exe\" -file \"C:\\Users\\Piotrek\\Desktop\\AgentHotelFinder\\UiPath\\Kayak\\Main.xaml\" -input " + parameters + "&& exit\"");
 
-                            File output = new File(workDirectory + destination +".csv");
-                            wait = 0;
-                            while(!output.exists() && wait<totalWait) {
-                                try {
-                                    Thread.sleep(1000);
-                                    wait++;
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
+                                                     //System.out.println("test");
+                                                 } catch (IOException e) {
+                                                     e.printStackTrace();
+                                                 }
 
-                            //read output
-                            var result = CSVHelper.ReadCsv(workDirectory + destination +".csv");
-                            //delete output
-                            output.delete();
+                                                 File output = new File(workDirectory + destination +".csv");
+                                                 wait = 0;
+                                                 while(!output.exists() && wait<totalWait) {
+                                                     try {
+                                                         Thread.sleep(1000);
+                                                         wait++;
+                                                     } catch (InterruptedException e) {
+                                                         e.printStackTrace();
+                                                     }
+                                                 }
 
-                            //notify MainAgent
-                            ACLMessage message = new ACLMessage(ACLMessage.INFORM);
-                            message.setContent("500");
-                            message.addReceiver(new AID( "mainAgent", AID.ISLOCALNAME));
-                            try {
-                                HotelsResult r = new HotelsResult();
-                                r.result = result;
-                                message.setLanguage("English");
-                                message.setContentObject(r);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            send(message);
-                        }
-                    });
-                }
-            }
-        });
+                                                 //read output
+                                                 var result = CSVHelper.ReadCsv(workDirectory + destination +".csv");
+                                                 //delete output
+                                                 output.delete();
+
+                                                 //notify MainAgent
+                                                 ACLMessage message = new ACLMessage(ACLMessage.INFORM);
+                                                 message.setContent("500");
+                                                 message.addReceiver(new AID( "mainAgent", AID.ISLOCALNAME));
+                                                 try {
+                                                     HotelsResult r = new HotelsResult();
+                                                     r.result = result;
+                                                     message.setLanguage("English");
+                                                     message.setContentObject(r);
+                                                 } catch (IOException e) {
+                                                     e.printStackTrace();
+                                                 }
+                                                 send(message);
+                                             }
+                                         });
+                                     }
+                                 }
+                             });
+                         }
+                     });
     }
 
     private void registerToDF() {

@@ -10,10 +10,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,5884</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,5946</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="21">
+    <scg:List x:TypeArguments="x:String" Capacity="42">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -35,10 +35,11 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="18">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="36">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -57,9 +58,10 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="1200,5764" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="1200,5826" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
     </Sequence.Variables>
@@ -68,13 +70,13 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open https://www.kayak.pl/hotels" Hidden="False" sap:VirtualizedContainerService.HintSize="1178,4107" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" NewSession="True" Private="True" Url="https://www.kayak.pl/hotels">
+    <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open https://www.kayak.pl/hotels" Hidden="False" sap:VirtualizedContainerService.HintSize="1178,4169" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" NewSession="True" Private="True" Url="https://www.kayak.pl/hotels">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1164,4008" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1164,4070" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="akceptuj" />
               <Variable x:TypeArguments="x:Boolean" Name="cookies" />
@@ -85,6 +87,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="1142,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
             <Delay mva:VisualBasic.Settings="{x:Null}" DisplayName="Delay 3 seconds" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="1142,22" sap2010:WorkflowViewState.IdRef="Delay_1">
               <TextExpression.Namespaces>
                 <sco:Collection x:TypeArguments="x:String">
@@ -830,9 +833,6 @@
       </ui:CommentOut.Body>
     </ui:CommentOut>
     <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="1178,500" sap2010:WorkflowViewState.IdRef="Sequence_17">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
-      </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -850,7 +850,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV  list-1'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column attr='text' name='Hotel Name' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-info' tag='div' idx='1' /&gt;&lt;webctrl class='Hotels-Results-HotelResultInfoColumn' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid infoColumnGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-title' tag='div' idx='1' /&gt;&lt;webctrl class='title allowWrap' tag='h2' idx='1' /&gt;&lt;webctrl class='titleContainer ' tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column attr='href' name='Offer Url' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-info' tag='div' idx='1' /&gt;&lt;webctrl class='inlineMultibook' tag='div' idx='1' /&gt;&lt;webctrl class='Common-Booking-DropdownMultibookProvidersList ' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid providersGrid no-overflow' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='bookingLink' tag='a' idx='1' /&gt;&lt;webctrl class='provider' tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column attr='text' name='Price' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-booking' tag='div' idx='1' /&gt;&lt;webctrl class='_r _z' tag='div' idx='1' /&gt;&lt;webctrl class='Hotels-Results-HotelResultBookingColumnV2 _jn _XK _v _fR _z' tag='div' idx='1' /&gt;&lt;webctrl class='_v _fR _om _li' tag='div' idx='1' /&gt;&lt;webctrl class='_a _25 _cR- _u' tag='div' idx='1' /&gt;&lt;webctrl class=' _w _y _nz _K&amp;#10;' tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column attr='text' name='Rating' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-info' tag='div' idx='1' /&gt;&lt;webctrl class='Hotels-Results-HotelResultInfoColumn' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid infoColumnGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-mid' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid midGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col-1-2 col-userRating' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid reviewGrid reviewsRating' tag='div' idx='1' /&gt;&lt;webctrl class='col col-score' tag='div' idx='1' /&gt;&lt;webctrl class='circleRating square' tag='div' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100">
+              <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV  list-1'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column attr='text' name='Hotel Name' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-info' tag='div' idx='1' /&gt;&lt;webctrl class='Hotels-Results-HotelResultInfoColumn' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid infoColumnGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-title' tag='div' idx='1' /&gt;&lt;webctrl class='title allowWrap' tag='h2' idx='1' /&gt;&lt;webctrl class='titleContainer ' tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column attr='href' name='Offer Url' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-info' tag='div' idx='1' /&gt;&lt;webctrl class='inlineMultibook' tag='div' idx='1' /&gt;&lt;webctrl class='Common-Booking-DropdownMultibookProvidersList ' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid providersGrid no-overflow' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='bookingLink' tag='a' idx='1' /&gt;&lt;webctrl class='provider' tag='span' idx='1' /&gt;&lt;/column&gt;&lt;column attr='text' name='Price' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-booking' tag='div' idx='1' /&gt;&lt;webctrl class='_r _z' tag='div' idx='1' /&gt;&lt;webctrl class='Hotels-Results-HotelResultBookingColumnV2 _jn _XK _v _fR _z' tag='div' idx='1' /&gt;&lt;webctrl class='_v _fR _om _li' tag='div' idx='1' /&gt;&lt;webctrl class='_a _25 _cR- _u' tag='div' idx='1' /&gt;&lt;webctrl class=' _w _y _nz _K&amp;#10;' tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column attr='text' name='Rating' exact='1'&gt;&lt;webctrl class='normalResults' tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl class='resultWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='mainItemWrapper' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid resultGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-info' tag='div' idx='1' /&gt;&lt;webctrl class='Hotels-Results-HotelResultInfoColumn' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid infoColumnGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col col-mid' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid midGrid' tag='div' idx='1' /&gt;&lt;webctrl class='col-1-2 col-userRating' tag='div' idx='1' /&gt;&lt;webctrl class='keel-grid reviewGrid reviewsRating' tag='div' idx='1' /&gt;&lt;webctrl class='col col-score' tag='div' idx='1' /&gt;&lt;webctrl class='circleRating square' tag='div' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="0">
                 <ui:ExtractData.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e2b6e42d6ccadb6155c2a792efd38aab" Selector="&lt;webctrl id='list-1' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
                 </ui:ExtractData.Target>

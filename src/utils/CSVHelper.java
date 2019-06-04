@@ -19,8 +19,8 @@ public class CSVHelper {
                 String[] values = line.split(";");
                 records.add(Arrays.asList(values));
             }
+            br.close();
         } catch (Exception ee) {
-
         }
         return records;
     }
