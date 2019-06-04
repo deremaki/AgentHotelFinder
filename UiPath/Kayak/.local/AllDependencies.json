@@ -112,6 +112,31 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "interop.domino.dll/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/_._": {}
+        },
+        "runtime": {
+          "lib/Interop.Domino.dll": {}
+        }
+      },
+      "Microsoft.AspNet.SignalR.Client/2.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.4"
+        },
+        "frameworkAssemblies": [
+          "System.Net.Http",
+          "System.Net.Http.WebRequest"
+        ],
+        "compile": {
+          "lib/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.AspNet.SignalR.Client.dll": {}
+        }
+      },
       "Microsoft.Exchange.WebServices/2.2.0": {
         "type": "package",
         "compile": {
@@ -176,7 +201,7 @@
           "lib/net45/ICSharpCode.SharpZipLib.dll": {}
         }
       },
-      "UiPath/10.0.6957.21531": {
+      "UiPath/19.5.7079.28746": {
         "type": "package",
         "compile": {
           "lib/_._": {}
@@ -188,7 +213,7 @@
           "build/_._": {}
         }
       },
-      "UiPath.Excel.Activities/2.5.2": {
+      "UiPath.Excel.Activities/2.6.0": {
         "type": "package",
         "dependencies": {
           "ClosedXML": "0.87.1",
@@ -199,12 +224,12 @@
           "SharpZipLib": "1.0.0"
         },
         "compile": {
-          "lib/net452/_._": {}
+          "lib/net461/_._": {}
         },
         "runtime": {
-          "lib/net452/UiPath.Excel.Activities.Design.dll": {},
-          "lib/net452/UiPath.Excel.Activities.dll": {},
-          "lib/net452/UiPath.Excel.dll": {}
+          "lib/net461/UiPath.Excel.Activities.Design.dll": {},
+          "lib/net461/UiPath.Excel.Activities.dll": {},
+          "lib/net461/UiPath.Excel.dll": {}
         },
         "resource": {
           "lib/net452/fr/UiPath.Excel.Activities.Design.resources.dll": {
@@ -236,11 +261,12 @@
           }
         }
       },
-      "UiPath.Mail.Activities/1.3.0": {
+      "UiPath.Mail.Activities/1.5.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle": "1.8.1",
-          "Microsoft.Exchange.WebServices": "2.2.0"
+          "Microsoft.Exchange.WebServices": "2.2.0",
+          "interop.domino.dll": "1.0.0"
         },
         "compile": {
           "lib/net452/_._": {}
@@ -282,10 +308,20 @@
           }
         }
       },
-      "UiPath.System.Activities/19.2.0": {
+      "UiPath.OCR.Contracts/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/_._": {}
+        },
+        "runtime": {
+          "lib/net45/UiPath.OCR.Contracts.dll": {}
+        }
+      },
+      "UiPath.System.Activities/19.5.0": {
         "type": "package",
         "dependencies": {
           "CsvHelper": "2.13.5",
+          "Microsoft.AspNet.SignalR.Client": "2.4.0",
           "Microsoft.Rest.ClientRuntime": "2.3.10",
           "Newtonsoft.Json": "11.0.2"
         },
@@ -328,19 +364,21 @@
           }
         }
       },
-      "UiPath.UIAutomation.Activities/19.2.0": {
+      "UiPath.UIAutomation.Activities/19.5.0": {
         "type": "package",
         "dependencies": {
           "AvalonEdit": "5.0.3",
           "Extended.Wpf.Toolkit": "2.8.0",
           "Humanizer.Core": "2.4.2",
-          "UiPath": "10.0.6957.21531",
-          "UiPath.Vision": "1.3.0"
+          "UiPath": "19.5.7079.28746",
+          "UiPath.OCR.Contracts": "1.0.0",
+          "UiPath.Vision": "1.6.0"
         },
         "compile": {
           "lib/net461/_._": {}
         },
         "runtime": {
+          "lib/net461/ActiproSoftware.DataGrid.Contrib.Wpf.dll": {},
           "lib/net461/ActiproSoftware.Docking.Wpf.dll": {},
           "lib/net461/ActiproSoftware.Editors.Wpf.dll": {},
           "lib/net461/ActiproSoftware.Ribbon.Wpf.dll": {},
@@ -385,7 +423,7 @@
           }
         }
       },
-      "UiPath.Vision/1.3.0": {
+      "UiPath.Vision/1.6.0": {
         "type": "package",
         "compile": {
           "lib/net452/_._": {}
@@ -404,7 +442,6 @@
       "path": "avalonedit/5.0.3",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "avalonedit.5.0.3.nupkg.sha512",
         "avalonedit.nuspec",
         "lib/Net35/ICSharpCode.AvalonEdit.dll",
@@ -419,7 +456,6 @@
       "path": "bouncycastle/1.8.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "Readme.txt",
         "bouncycastle.1.8.1.nupkg.sha512",
         "bouncycastle.nuspec",
@@ -431,6 +467,7 @@
       "type": "package",
       "path": "closedxml/0.87.1",
       "files": [
+        ".nupkg.metadata",
         "closedxml.0.87.1.nupkg.sha512",
         "closedxml.nuspec",
         "lib/net35/ClosedXML.dll",
@@ -447,7 +484,6 @@
       "path": "csvhelper/2.13.5",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "csvhelper.2.13.5.nupkg.sha512",
         "csvhelper.nuspec",
         "lib/net20/CsvHelper.dll",
@@ -469,6 +505,7 @@
       "type": "package",
       "path": "documentformat.openxml/2.5.0",
       "files": [
+        ".nupkg.metadata",
         "documentformat.openxml.2.5.0.nupkg.sha512",
         "documentformat.openxml.nuspec",
         "lib/DocumentFormat.OpenXml.dll"
@@ -520,13 +557,46 @@
         "lib/netstandard2.0/Humanizer.xml"
       ]
     },
+    "interop.domino.dll/1.0.0": {
+      "sha512": "gKTX8fwrysbgSWSrJUpMpdp/qmRwYT8JTnbpFzTN72WnX3M1vxkHzpxH3oGMSqpHf20n9AZ0TzDJkt2itp6hyQ==",
+      "type": "package",
+      "path": "interop.domino.dll/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "interop.domino.dll.1.0.0.nupkg.sha512",
+        "interop.domino.dll.nuspec",
+        "lib/Interop.Domino.dll"
+      ]
+    },
+    "Microsoft.AspNet.SignalR.Client/2.4.0": {
+      "sha512": "xGoQq9dEsBU49U1Whl0To2JyRQePmo8ayYS8VNruLlQaX+fQBzYyLJeMlW9r7mlt8Vc9JP+083m9pKrfYpdDbg==",
+      "type": "package",
+      "path": "microsoft.aspnet.signalr.client/2.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Microsoft.AspNet.SignalR.Client.dll",
+        "lib/net40/Microsoft.AspNet.SignalR.Client.pdb",
+        "lib/net40/Microsoft.AspNet.SignalR.Client.xml",
+        "lib/net45/Microsoft.AspNet.SignalR.Client.dll",
+        "lib/net45/Microsoft.AspNet.SignalR.Client.pdb",
+        "lib/net45/Microsoft.AspNet.SignalR.Client.xml",
+        "lib/netstandard1.3/Microsoft.AspNet.SignalR.Client.dll",
+        "lib/netstandard1.3/Microsoft.AspNet.SignalR.Client.pdb",
+        "lib/netstandard1.3/Microsoft.AspNet.SignalR.Client.xml",
+        "lib/netstandard2.0/Microsoft.AspNet.SignalR.Client.dll",
+        "lib/netstandard2.0/Microsoft.AspNet.SignalR.Client.pdb",
+        "lib/netstandard2.0/Microsoft.AspNet.SignalR.Client.xml",
+        "microsoft.aspnet.signalr.client.2.4.0.nupkg.sha512",
+        "microsoft.aspnet.signalr.client.nuspec"
+      ]
+    },
     "Microsoft.Exchange.WebServices/2.2.0": {
       "sha512": "NlkaTD0uWtg9VbiWq0VDWMBPzHFknH3tmstrxt0acrT09LBGqATTjRpsGOODz6tUdX7/dehBinxsf75U5Uw/+A==",
       "type": "package",
       "path": "microsoft.exchange.webservices/2.2.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "doc/License Terms.rtf",
         "doc/README.htm",
         "doc/Redist.txt",
@@ -562,6 +632,7 @@
       "type": "package",
       "path": "microsoft.visualstudio.ole.interop/7.10.6071",
       "files": [
+        ".nupkg.metadata",
         "lib/Microsoft.VisualStudio.OLE.Interop.dll",
         "lib/Microsoft.VisualStudio.OLE.Interop.xml",
         "microsoft.visualstudio.ole.interop.7.10.6071.nupkg.sha512",
@@ -574,7 +645,6 @@
       "path": "newtonsoft.json/11.0.2",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -604,7 +674,6 @@
       "path": "npoi/2.4.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "LICENSE",
         "Read Me.txt",
         "lib/NPOI.xml",
@@ -638,7 +707,6 @@
       "path": "sharpziplib/1.0.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net45/ICSharpCode.SharpZipLib.dll",
         "lib/net45/ICSharpCode.SharpZipLib.xml",
         "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll",
@@ -647,17 +715,20 @@
         "sharpziplib.nuspec"
       ]
     },
-    "UiPath/10.0.6957.21531": {
-      "sha512": "7uXQgp918vs4cbLiMZAdlz871SjfQLygWDCL+kq8ezsBlVnV4gk6/6Mq1rdAsQM+F409VMwEweuW4HUokbtVow==",
+    "UiPath/19.5.7079.28746": {
+      "sha512": "zv584r1+YwyK52wLdzXi5hvTTtMGqLYPD/ySDrRlJJLT1ZBnW/9mMsNPOx8bUrIJeeraod0oc7CoSI4jICBj6A==",
       "type": "package",
-      "path": "uipath/10.0.6957.21531",
+      "path": "uipath/19.5.7079.28746",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "build/UiPath.targets",
         "build/UiPath/BrowserNativeMessagingImpl.dll",
         "build/UiPath/FuncServer_x64.exe",
         "build/UiPath/FuncServer_x86.exe",
         "build/UiPath/JavaSupport/UiPathBridge.jar",
         "build/UiPath/JavaSupport/UiPathJBIntruder.jar",
+        "build/UiPath/JavaSupport/UiPathJBIntruderV8.jar",
         "build/UiPath/JavaSupport/UiPathV8.jar",
         "build/UiPath/JavaSupport/attach_x64/6/attach.dll",
         "build/UiPath/JavaSupport/attach_x64/7/attach.dll",
@@ -668,6 +739,7 @@
         "build/UiPath/JavaSupport/jaccess-1_4.jar",
         "build/UiPath/JavaSupport/jaccess.jar",
         "build/UiPath/JavaSupport/tools.jar",
+        "build/UiPath/JavaSupport/toolsV8.jar",
         "build/UiPath/JavaSupport/xml-apis.jar",
         "build/UiPath/Resources/x32.manifest",
         "build/UiPath/Resources/x64.manifest",
@@ -677,18 +749,14 @@
         "build/UiPath/ShaferFilechck.dll",
         "build/UiPath/TCapture.dll",
         "build/UiPath/TCapture_x64.dll",
-        "build/UiPath/UiEventHook.dll",
-        "build/UiPath/UiEventHook_x64.dll",
         "build/UiPath/UiPath.dll",
         "build/UiPath/UiPathJavaBridgeImplV8.dll",
         "build/UiPath/UiPathJavaBridgeImplV8_x64.dll",
         "build/UiPath/UiPathJavaBridgeV8.dll",
         "build/UiPath/UiPathJavaBridgeV8_x64.dll",
-        "build/UiPath/UiPathRemoteRuntime.exe",
+        "build/UiPath/UiPathRemote.exe",
         "build/UiPath/UiPathSLB.dll",
         "build/UiPath/UiPathSLB_x64.dll",
-        "build/UiPath/UiPathVirtualChannelCitrix.dll",
-        "build/UiPath/UiPathVirtualChannelRdp.dll",
         "build/UiPath/UiPath_x64.dll",
         "build/UiPath/aahook.dll",
         "build/UiPath/aahook_x64.dll",
@@ -698,18 +766,17 @@
         "build/UiPath/x64/ShaferFilechck_x64.DLL",
         "build/UiPath/x64/msvcr100.dll",
         "lib/UiPath.Interop.dll",
-        "uipath.10.0.6957.21531.nupkg.sha512",
+        "uipath.19.5.7079.28746.nupkg.sha512",
         "uipath.nuspec"
       ]
     },
-    "UiPath.Excel.Activities/2.5.2": {
-      "sha512": "CNXcB2+kpNp9z2CUTZKZjNtvO1nqloVmyKRrHUgObqXHSm1syr7wDeVYvYajtOOw5P2vlo0i8Ro85SJRs79fRg==",
+    "UiPath.Excel.Activities/2.6.0": {
+      "sha512": "8t0ehkFwPk5bKB7U2QP/utTpna7e0Ne2RekGQZO1xdSRZ6XpqzNzzOaeCSXNgDj6x3s3JWUjiw0WI7BX/kBMNA==",
       "type": "package",
-      "path": "uipath.excel.activities/2.5.2",
+      "path": "uipath.excel.activities/2.6.0",
       "files": [
-        "lib/net452/UiPath.Excel.Activities.Design.dll",
-        "lib/net452/UiPath.Excel.Activities.dll",
-        "lib/net452/UiPath.Excel.dll",
+        ".nupkg.metadata",
+        ".signature.p7s",
         "lib/net452/fr/UiPath.Excel.Activities.Design.resources.dll",
         "lib/net452/fr/UiPath.Excel.Activities.resources.dll",
         "lib/net452/fr/UiPath.Excel.resources.dll",
@@ -719,15 +786,20 @@
         "lib/net452/ru/UiPath.Excel.Activities.Design.resources.dll",
         "lib/net452/ru/UiPath.Excel.Activities.resources.dll",
         "lib/net452/ru/UiPath.Excel.resources.dll",
-        "uipath.excel.activities.2.5.2.nupkg.sha512",
+        "lib/net461/UiPath.Excel.Activities.Design.dll",
+        "lib/net461/UiPath.Excel.Activities.dll",
+        "lib/net461/UiPath.Excel.dll",
+        "uipath.excel.activities.2.6.0.nupkg.sha512",
         "uipath.excel.activities.nuspec"
       ]
     },
-    "UiPath.Mail.Activities/1.3.0": {
-      "sha512": "dvSzZAEs6zFNnXO0X3gyIzYZHNNyWwFoQ3ZGJdDH0Rr90FBsBEsEkcxfqeI2b9NEjzqjtT/qXDA1UZy1JBOU8g==",
+    "UiPath.Mail.Activities/1.5.0": {
+      "sha512": "2Mb0m/a5mdAiX7wkDjEd/ufHtRmvyNoxbITwUyEX9ImM9jRbdPizMX0292oE3ujwShCzziCLfq7DUasLpPwVRA==",
       "type": "package",
-      "path": "uipath.mail.activities/1.3.0",
+      "path": "uipath.mail.activities/1.5.0",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "lib/net452/MailKit.dll",
         "lib/net452/MailKit.xml",
         "lib/net452/MimeKit.dll",
@@ -744,15 +816,29 @@
         "lib/net452/ru/UiPath.Mail.Activities.Design.resources.dll",
         "lib/net452/ru/UiPath.Mail.Activities.resources.dll",
         "lib/net452/ru/UiPath.Mail.resources.dll",
-        "uipath.mail.activities.1.3.0.nupkg.sha512",
+        "uipath.mail.activities.1.5.0.nupkg.sha512",
         "uipath.mail.activities.nuspec"
       ]
     },
-    "UiPath.System.Activities/19.2.0": {
-      "sha512": "kJ+ipnSBlXJLGR3sDGBmszrp2a+1dCLF5Uo+DUNqjCSbIPGmC2eZGs/E1uVr6FEdPxWoeE2T/N1akakwhedwPg==",
+    "UiPath.OCR.Contracts/1.0.0": {
+      "sha512": "8TtVtfYiZ/lNZTPbkaBQmf/NazOYxgiN0UFuAAFRo3iUShUHnX392z3cOSgp+I6+ydtncwlwy/G7bS46qgu8kQ==",
       "type": "package",
-      "path": "uipath.system.activities/19.2.0",
+      "path": "uipath.ocr.contracts/1.0.0",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/UiPath.OCR.Contracts.dll",
+        "uipath.ocr.contracts.1.0.0.nupkg.sha512",
+        "uipath.ocr.contracts.nuspec"
+      ]
+    },
+    "UiPath.System.Activities/19.5.0": {
+      "sha512": "IFZq+8xZGjIuiPeTfAFVJNFHNlSVjkxyX5vaxDTJBzipJnZK9fF7kNKGXT0+KkGmh387vKBrZW+kXXs8S6lrIA==",
+      "type": "package",
+      "path": "uipath.system.activities/19.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "lib/net461/ActiproSoftware.Docking.Wpf.dll",
         "lib/net461/ActiproSoftware.Ribbon.Wpf.dll",
         "lib/net461/ActiproSoftware.Shared.Wpf.dll",
@@ -772,15 +858,18 @@
         "lib/net461/ja/UiPath.System.Activities.resources.dll",
         "lib/net461/ru/UiPath.System.Activities.Design.resources.dll",
         "lib/net461/ru/UiPath.System.Activities.resources.dll",
-        "uipath.system.activities.19.2.0.nupkg.sha512",
+        "uipath.system.activities.19.5.0.nupkg.sha512",
         "uipath.system.activities.nuspec"
       ]
     },
-    "UiPath.UIAutomation.Activities/19.2.0": {
-      "sha512": "zbs89qj1AlFt8kuSgMN/RXyF3ftAEOMJW6jmbIOoFxomqWgAGKWNcDIOBUEtfY/l3WWju0VieSSEeWLodj8SHA==",
+    "UiPath.UIAutomation.Activities/19.5.0": {
+      "sha512": "IbMGoN2zDivivTS7a7ZV8gB2j1GlfaxopDro2cGpZx63piYzAcy7TGKzLQi/GZlPWnujmgtn6TvXAuXMw2Qndw==",
       "type": "package",
-      "path": "uipath.uiautomation.activities/19.2.0",
+      "path": "uipath.uiautomation.activities/19.5.0",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/ActiproSoftware.DataGrid.Contrib.Wpf.dll",
         "build/ActiproSoftware.Docking.Wpf.dll",
         "build/ActiproSoftware.Editors.Wpf.dll",
         "build/ActiproSoftware.Ribbon.Wpf.dll",
@@ -792,16 +881,22 @@
         "build/ActiproSoftware.Text.Wpf.dll",
         "build/ActiproSoftware.Wizard.Wpf.dll",
         "build/ICSharpCode.AvalonEdit.dll",
+        "build/System.ValueTuple.dll",
         "build/UiExplorer.exe",
         "build/UiExplorer.exe.config",
         "build/UiPath.Activities.Contracts.dll",
+        "build/UiPath.UIAutomation.Activities.Design.dll",
         "build/UiPath.UiAutomation.Activities.dll",
         "build/fr/UiExplorer.resources.dll",
+        "build/fr/UiPath.UIAutomation.Activities.Design.resources.dll",
         "build/fr/UiPath.UiAutomation.Activities.resources.dll",
         "build/ja/UiExplorer.resources.dll",
+        "build/ja/UiPath.UIAutomation.Activities.Design.resources.dll",
         "build/ja/UiPath.UiAutomation.Activities.resources.dll",
         "build/ru/UiExplorer.resources.dll",
+        "build/ru/UiPath.UIAutomation.Activities.Design.resources.dll",
         "build/ru/UiPath.UiAutomation.Activities.resources.dll",
+        "lib/net461/ActiproSoftware.DataGrid.Contrib.Wpf.dll",
         "lib/net461/ActiproSoftware.Docking.Wpf.dll",
         "lib/net461/ActiproSoftware.Editors.Wpf.dll",
         "lib/net461/ActiproSoftware.Ribbon.Wpf.dll",
@@ -824,22 +919,23 @@
         "lib/net461/ru/UiPath.UIAutomation.Activities.Design.resources.dll",
         "lib/net461/ru/UiPath.UiAutomation.Activities.resources.dll",
         "lib/net461/ru/UiPath.Wizards.resources.dll",
-        "uipath.uiautomation.activities.19.2.0.nupkg.sha512",
+        "uipath.uiautomation.activities.19.5.0.nupkg.sha512",
         "uipath.uiautomation.activities.nuspec"
       ]
     },
-    "UiPath.Vision/1.3.0": {
-      "sha512": "BaOjq4r7QymiuGJq+hv7TFAlPaQJsF4tpQc/rVqcVuJgcboPlZwKP22vHc2p3l73xVYyPICAt5gAZasMIdkCEw==",
+    "UiPath.Vision/1.6.0": {
+      "sha512": "Neif/GWzQoejKjhAU8C7eVRsjpte9b5O4NFEhcGydPu/9//JxQp6KxGqcI6CH7rzZs2BY6cKKp9zx9IjINu6yA==",
       "type": "package",
-      "path": "uipath.vision/1.3.0",
+      "path": "uipath.vision/1.6.0",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "build/AForge.Imaging.dll",
         "build/AForge.Math.dll",
         "build/AForge.dll",
         "build/AbbyyOnlineSdk.dll",
         "build/BouncyCastle.Crypto.dll",
         "build/Emgu.CV.World.dll",
-        "build/Exceptionless.dll",
         "build/Google.Api.CommonProtos.dll",
         "build/Google.Api.Gax.Grpc.dll",
         "build/Google.Api.Gax.dll",
@@ -859,18 +955,27 @@
         "build/Microsoft.Rest.ClientRuntime.dll",
         "build/NLog.dll",
         "build/Newtonsoft.Json.dll",
+        "build/System.Collections.Immutable.dll",
         "build/System.Interactive.Async.dll",
         "build/System.ValueTuple.dll",
-        "build/UiPath.NeuralNet.dll",
+        "build/UiPath.OCR.Contracts.dll",
+        "build/UiPath.Vision.AbbyyCloud.dll",
+        "build/UiPath.Vision.AbbyyFRE11.dll",
+        "build/UiPath.Vision.AbbyyFRE12.dll",
+        "build/UiPath.Vision.AbbyyFRECommon.dll",
+        "build/UiPath.Vision.AzureComputerVision.dll",
         "build/UiPath.Vision.Core.dll",
+        "build/UiPath.Vision.GoogleCloud.dll",
         "build/UiPath.Vision.Host32.exe",
         "build/UiPath.Vision.Host32.exe.config",
+        "build/UiPath.Vision.Microsoft.dll",
+        "build/UiPath.Vision.MicrosoftCloud.dll",
+        "build/UiPath.Vision.Tesseract.dll",
         "build/UiPath.Vision.dll",
         "build/ZedGraph.dll",
         "build/Zlib.Portable.dll",
         "build/grpc_csharp_ext.x64.dll",
         "build/grpc_csharp_ext.x86.dll",
-        "build/log4net.dll",
         "build/nlog.config",
         "build/tessdata/eng.traineddata",
         "build/x86/concrt140.dll",
@@ -879,17 +984,19 @@
         "build/x86/opencv_ffmpeg341.dll",
         "build/x86/tbb.dll",
         "build/x86/vcruntime140.dll",
-        "content/grpc_csharp_ext.x64.dll",
-        "content/grpc_csharp_ext.x86.dll",
-        "content/libgrpc_csharp_ext.x64.dylib",
-        "content/libgrpc_csharp_ext.x64.so",
-        "content/libgrpc_csharp_ext.x86.dylib",
-        "content/libgrpc_csharp_ext.x86.so",
-        "lib/net452/UiPath.NeuralNet.dll",
+        "lib/net452/UiPath.Vision.AbbyyCloud.dll",
+        "lib/net452/UiPath.Vision.AbbyyFRE11.dll",
+        "lib/net452/UiPath.Vision.AbbyyFRE12.dll",
+        "lib/net452/UiPath.Vision.AbbyyFRECommon.dll",
+        "lib/net452/UiPath.Vision.AzureComputerVision.dll",
         "lib/net452/UiPath.Vision.Core.dll",
+        "lib/net452/UiPath.Vision.GoogleCloud.dll",
         "lib/net452/UiPath.Vision.Host32.exe",
+        "lib/net452/UiPath.Vision.Microsoft.dll",
+        "lib/net452/UiPath.Vision.MicrosoftCloud.dll",
+        "lib/net452/UiPath.Vision.Tesseract.dll",
         "lib/net452/UiPath.Vision.dll",
-        "uipath.vision.1.3.0.nupkg.sha512",
+        "uipath.vision.1.6.0.nupkg.sha512",
         "uipath.vision.nuspec"
       ]
     }
@@ -897,10 +1004,10 @@
   "projectFileDependencyGroups": {
     "": [],
     ".NETFramework,Version=v4.6.1": [
-      "UiPath.Excel.Activities >= 2.5.2 <= 2.5.2",
-      "UiPath.Mail.Activities >= 1.3.0 <= 1.3.0",
-      "UiPath.System.Activities >= 19.2.0 <= 19.2.0",
-      "UiPath.UIAutomation.Activities >= 19.2.0 <= 19.2.0"
+      "UiPath.Excel.Activities >= 2.6.0 <= 2.6.0",
+      "UiPath.Mail.Activities >= 1.5.0 <= 1.5.0",
+      "UiPath.System.Activities >= 19.5.0 <= 19.5.0",
+      "UiPath.UIAutomation.Activities >= 19.5.0 <= 19.5.0"
     ]
   },
   "packageFolders": {
@@ -908,11 +1015,11 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "hotelscomRobot",
-      "projectName": "hotelscomRobot",
-      "projectPath": "C:\\Users\\derem\\source\\repos\\AgentHotelFinder\\UiPath\\bookingcomAgent\\.local",
+      "projectUniqueName": "Kayak",
+      "projectName": "Kayak",
+      "projectPath": "C:\\Users\\derem\\source\\repos\\AgentHotelFinder\\UiPath\\Kayak\\.local",
       "packagesPath": "C:\\Users\\derem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\derem\\source\\repos\\AgentHotelFinder\\UiPath\\bookingcomAgent\\.local"
+      "outputPath": "C:\\Users\\derem\\source\\repos\\AgentHotelFinder\\UiPath\\Kayak\\.local"
     },
     "frameworks": {
       "net461": {
@@ -920,25 +1027,34 @@
           "UiPath.Excel.Activities": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[2.5.2, 2.5.2]"
+            "version": "[2.6.0, 2.6.0]"
           },
           "UiPath.Mail.Activities": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[1.3.0, 1.3.0]"
+            "version": "[1.5.0, 1.5.0]"
           },
           "UiPath.System.Activities": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[19.2.0, 19.2.0]"
+            "version": "[19.5.0, 19.5.0]"
           },
           "UiPath.UIAutomation.Activities": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[19.2.0, 19.2.0]"
+            "version": "[19.5.0, 19.5.0]"
           }
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU3034",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.SignalR.Client 2.4.0' from source 'C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.5.0\\Packages': This package is signed but not by a trusted signer.",
+      "libraryId": "Microsoft.AspNet.SignalR.Client"
+    }
+  ]
 }

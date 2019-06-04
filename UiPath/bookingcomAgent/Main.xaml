@@ -10,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>584,4829</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>584,4447</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -60,10 +60,9 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="544,4749" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap:VirtualizedContainerService.HintSize="544,4327" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
     </Sequence.Variables>
@@ -648,24 +647,6 @@
         </ui:BrowserScope.Body>
       </ui:BrowserScope>
     </Sequence>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="522,382" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" WorkbookPath="[saveDirectory + destination + &quot;.xlsx&quot;]">
-      <ui:ExcelApplicationScope.Body>
-        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,273" sap2010:WorkflowViewState.IdRef="Sequence_17">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelWriteRange AddHeaders="False" DataTable="[ExtractDataTable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_4" SheetName="Sheet1" StartingCell="A1" />
-            <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="314,22" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_4" />
-          </Sequence>
-        </ActivityAction>
-      </ui:ExcelApplicationScope.Body>
-    </ui:ExcelApplicationScope>
     <ui:CreateFile ContinueOnError="{x:Null}" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="522,22" sap2010:WorkflowViewState.IdRef="CreateFile_4" Name="[destination+&quot;.csv&quot;]" Path="[saveDirectory]" />
     <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[saveDirectory + destination + &quot;.csv&quot;]" sap:VirtualizedContainerService.HintSize="522,87" sap2010:WorkflowViewState.IdRef="WriteCsvFile_4" />
     <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="522,22" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="iexplore" />
