@@ -15,6 +15,7 @@ import jade.domain.mobility.MobilityOntology;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
+import java.io.File;
 import java.util.*;
 
 import jade.lang.acl.UnreadableException;
@@ -34,6 +35,11 @@ public class MainAgent extends Agent {
         Object[] args = getArguments();
         bookingResultsFromAllAgents = new ArrayList<>();
         responseFromRobot = new HashMap<>();
+
+        File dir = new File("C:/Robot/");
+        for(File file: dir.listFiles())
+            if (!file.isDirectory())
+                file.delete();
 
         System.out.println("MainAgent: Hello, my name is " + getLocalName());
 
