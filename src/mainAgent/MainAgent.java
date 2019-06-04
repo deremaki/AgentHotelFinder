@@ -71,7 +71,7 @@ public class MainAgent extends Agent {
                     }
                     send(message);
                     // end program
-                    myAgent.doDelete();
+                    //myAgent.doDelete();
                 }
             }
         });
@@ -117,16 +117,11 @@ public class MainAgent extends Agent {
                 addSubBehaviour(new myReceiver(myAgent, 150000, MessageTemplate.MatchPerformative( ACLMessage.INFORM )) {
                     public void handle( ACLMessage msg) {
                         if (msg != null ) {
-                            System.out.println("MainAgent: " + robot + " found " + msg.getContent());
-                            int offer = 0;//Integer.parseInt( msg.getContent());
                             HotelsResult result = null;
                             try {
                                 result = (HotelsResult) msg.getContentObject();
                             } catch (Exception e) {
                                 e.printStackTrace();
-                            }
-                            if (offer < currentBestPrice) {
-                                currentBestPrice = offer;
                             }
                             responseFromRobot.put(msg.getSender().getName(), true);
                             if (result != null) {
@@ -184,10 +179,10 @@ public class MainAgent extends Agent {
             addSubBehaviour(new OneShotBehaviour() {
                 @Override
                 public void action() {
-                    System.out.println("MainAgent: Stay in " + requestMessage.getContent() + " for only " + currentBestPrice + " was found");
+                    System.out.println("MainAgent: Stay in " + requestMessage.getContent() + " found");
                     ACLMessage message = new ACLMessage(ACLMessage.INFORM);
                     message.setContent(requestMessage.getContent() + " for " + currentBestPrice);
-                    message.addReceiver(new AID( "userAgent", AID.ISLOCALNAME));
+                    message.addReceiver(requestMessage.getSender());
                     send(message);
                 }
             });
