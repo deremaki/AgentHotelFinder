@@ -404,6 +404,7 @@
       "path": "avalonedit/5.0.3",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "avalonedit.5.0.3.nupkg.sha512",
         "avalonedit.nuspec",
         "lib/Net35/ICSharpCode.AvalonEdit.dll",
@@ -418,6 +419,7 @@
       "path": "bouncycastle/1.8.1",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "Readme.txt",
         "bouncycastle.1.8.1.nupkg.sha512",
         "bouncycastle.nuspec",
@@ -445,6 +447,7 @@
       "path": "csvhelper/2.13.5",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "csvhelper.2.13.5.nupkg.sha512",
         "csvhelper.nuspec",
         "lib/net20/CsvHelper.dll",
@@ -523,6 +526,7 @@
       "path": "microsoft.exchange.webservices/2.2.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "doc/License Terms.rtf",
         "doc/README.htm",
         "doc/Redist.txt",
@@ -570,6 +574,7 @@
       "path": "newtonsoft.json/11.0.2",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -599,6 +604,7 @@
       "path": "npoi/2.4.1",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE",
         "Read Me.txt",
         "lib/NPOI.xml",
@@ -632,6 +638,7 @@
       "path": "sharpziplib/1.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "lib/net45/ICSharpCode.SharpZipLib.dll",
         "lib/net45/ICSharpCode.SharpZipLib.xml",
         "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll",
