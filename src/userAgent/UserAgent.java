@@ -3,11 +3,14 @@ package userAgent;
 import jade.content.lang.sl.SLCodec;
 import jade.core.AID;
 import jade.core.Agent;
+import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.core.behaviours.SequentialBehaviour;
+import jade.core.behaviours.TickerBehaviour;
 import jade.domain.mobility.MobilityOntology;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.lang.acl.UnreadableException;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 
@@ -16,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import utils.*;
 
@@ -41,6 +45,7 @@ public class UserAgent extends Agent {
 
         System.out.println("UserAgent: Setting up User Agent " + getLocalName());
         addBehaviour(new HotelRequestBehaviour(this));
+
     }
 
     private class HotelRequestBehaviour extends OneShotBehaviour {
