@@ -12,6 +12,8 @@ import jade.lang.acl.MessageTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.Base64;
 import java.util.Date;
 
 import utils.*;
@@ -55,12 +57,14 @@ public class HotelscomAgent extends Agent {
                     myAgent.addBehaviour(new OneShotBehaviour() {
                         @Override
                         public void action() {
-                            try {
-                                Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\IdeaProjects\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
+                            //try {
+                                //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\derem\\AppData\\Local\\UiPath\\app-19.4.2\\UiRobot.exe\" -file \"C:\\Users\\derem\\IdeaProjects\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
+                                //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"\"C:\\Users\\Piotrek\\AppData\\Local\\UiPath\\app-19.5.0\\UiRobot.exe\" -file \"C:\\Users\\Piotrek\\Desktop\\AgentHotelFinder\\UiPath\\bookingcomAgent\\Main.xaml\" -input " + parameters + "&& exit\"");
+
                                 System.out.println("test");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            /*} catch (IOException e) {
+                                //e.printStackTrace();
+                            }*/
 
                             File output = new File(workDirectory + destination +".csv");
                             wait = 0;
@@ -74,7 +78,9 @@ public class HotelscomAgent extends Agent {
                             }
 
                             //read output
+                            var result = CSVHelper.ReadCsv(workDirectory + destination +".csv");
                             //delete output
+                            //output.delete();
 
                             System.out.println("HotelscomAgent: Found nice hotel for 500!");
 
@@ -82,6 +88,14 @@ public class HotelscomAgent extends Agent {
                             ACLMessage message = new ACLMessage(ACLMessage.INFORM);
                             message.setContent("500");
                             message.addReceiver(new AID( "mainAgent", AID.ISLOCALNAME));
+                            try {
+                                HotelsResult r = new HotelsResult();
+                                r.result = result;
+                                message.setLanguage("English");
+                                message.setContentObject(r);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             send(message);
                         }
                     });

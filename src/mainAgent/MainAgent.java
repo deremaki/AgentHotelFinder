@@ -6,6 +6,7 @@ import jade.core.Agent;
 import jade.core.Location;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.core.behaviours.SequentialBehaviour;
+import jade.core.behaviours.TickerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
@@ -14,19 +15,25 @@ import jade.domain.mobility.MobilityOntology;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
-import java.util.LinkedList;
+import java.util.*;
 
+import jade.lang.acl.UnreadableException;
 import utils.*;
 
 public class MainAgent extends Agent {
 
     private LinkedList<AID> hotelRobots;
+    private List<List<String>> bookingResultsFromAllAgents;
+    private Map<String, Boolean> responseFromRobot;
+    private String destination = "C:\\Robot\\FinalResult.csv";
 
     @Override
     protected void setup() {
         super.setup();
 
         Object[] args = getArguments();
+        bookingResultsFromAllAgents = new ArrayList<>();
+        responseFromRobot = new HashMap<>();
 
         System.out.println("MainAgent: Hello, my name is " + getLocalName());
 
@@ -35,6 +42,15 @@ public class MainAgent extends Agent {
             {
                 if (msg != null ) {
                     myAgent.addBehaviour(new SearchForHotelsBehaviour(msg));
+                }
+            }
+        });
+
+        addBehaviour(new TickerBehaviour(this, 5000) {
+            @Override
+            public void onTick() {
+                if (responseFromRobot.values().stream().anyMatch((v) -> v)) {
+                    CSVHelper.WriteCsc(bookingResultsFromAllAgents, destination);
                 }
             }
         });
@@ -63,6 +79,8 @@ public class MainAgent extends Agent {
 
             for (AID robot: hotelRobots) {
 
+                responseFromRobot.put(robot.getName(), false);
+
                 addSubBehaviour(new OneShotBehaviour() {
                     @Override
                     public void action() {
@@ -75,13 +93,25 @@ public class MainAgent extends Agent {
                 });
 
                 addSubBehaviour(new myReceiver(myAgent, 100000, MessageTemplate.MatchPerformative( ACLMessage.INFORM )) {
-                    public void handle( ACLMessage msg)
-                    {
+                    public void handle( ACLMessage msg) {
                         if (msg != null ) {
                             System.out.println("MainAgent: " + robot + " found " + msg.getContent());
-                            int offer = Integer.parseInt( msg.getContent());
+                            int offer = 0;//Integer.parseInt( msg.getContent());
+                            HotelsResult result = null;
+                            try {
+                                result = (HotelsResult) msg.getContentObject();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             if (offer < currentBestPrice) {
                                 currentBestPrice = offer;
+                            }
+                            responseFromRobot.put(msg.getSender().getName(), true);
+                            if (result != null) {
+                                if (bookingResultsFromAllAgents.size() > 0 && result.result.size() > 0) {
+                                    result.result.remove(0);
+                                }
+                                bookingResultsFromAllAgents.addAll(result.result);
                             }
                         }
                     }
